@@ -125,6 +125,17 @@ public class Linked_List extends LinkedList{
         bookBag.add("Hello World", 9123456);
         
         bookBag.display();
+        bookBag.remove();
+        System.out.println("==============================");
         
+        bookBag.display();
+        bookBag.removeLink("1Q84");
+        System.out.println("==============================");
+        
+        bookBag.display();
+        bookBag.add("Dostoevsky", 4432587);
+        System.out.println("==============================");
+
+        bookBag.display();
     }
 }
