@@ -47,34 +47,72 @@ class DoubleEndedLinkedList{
     Neighbor firstLink;
     Neighbor lastLink;
     
+    //Insert new link before the First link
     public void insertInFirstPosition(String homeOwnerName, int houseNumber){
         Neighbor newLink = new Neighbor(homeOwnerName, houseNumber);
         
         if(isEmpty()){
             lastLink = newLink;
         }
+        else{
+            firstLink.previous = newLink;
+            newLink.next = firstLink;
+        }
         
-        newLink.next = firstLink;
         firstLink = newLink;
 
     }
     
+    //Insert the new link after the Last link
     public void insertInLastPosition(String homeOwnerName, int houseNumber){
         Neighbor newLink = new Neighbor(homeOwnerName, houseNumber);
         
         if(isEmpty()){
             firstLink = newLink;
         }
+        else{
+            newLink.previous = lastLink;
+            lastLink.next = newLink;
+        }
         
-        newLink.previous = lastLink;
-        lastLink.next = newLink;
         lastLink = newLink;
     }
     
+    public boolean insertAfterKey(String homeOwnerName, int houseNumber, int key){
+        Neighbor newLink = new Neighbor(homeOwnerName, houseNumber);
+        Neighbor currentLink = firstLink;
+        
+        while(currentLink.getNumber() != key){
+            currentLink = firstLink.next;
+            
+            if(currentLink == null){
+                System.out.println("Cannot find the key in the list");
+                return false;
+            }
+        }
+        
+        if(currentLink == lastLink){
+            newLink.next = null;
+            lastLink = newLink;
+        }
+        
+        else{
+            newLink.next = currentLink.next;
+            currentLink.next.previous = newLink;
+            
+        }
+        
+        newLink.previous = currentLink;
+        currentLink.next = newLink;
+        return true;
+    }
+    
+    //Check if the First linkis empty
     public boolean isEmpty(){
         return firstLink == null;
     }
     
+    //Display all the links of the linked list
     public void display(){
         Neighbor theLink = firstLink;
         
@@ -97,6 +135,7 @@ class DoubleEndedLinkedList{
 
 class Double_Linked_List
     extends DoubleEndedLinkedList{
+        
     public static void main (String [] args){
         
         DoubleEndedLinkedList theList = new DoubleEndedLinkedList();
@@ -104,6 +143,7 @@ class Double_Linked_List
         theList.insertInFirstPosition("Carol", 8);
         theList.insertInLastPosition("Belle", 9);
         theList.insertInLastPosition("Donna", 10);
+        theList.insertAfterKey("Kepler", 13, 8);
 
         theList.display();
     }
