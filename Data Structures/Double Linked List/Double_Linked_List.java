@@ -75,6 +75,18 @@ class DoubleEndedLinkedList{
         return firstLink == null;
     }
     
+    public void display(){
+        Neighbor theLink = firstLink;
+        
+        while(theLink != null){
+            
+            theLink.display();
+            System.out.println("Next Link: " + theLink.next);
+            theLink = theLink.next;
+            
+            System.out.println();
+        }
+    }
 }
 
 
@@ -91,16 +103,4 @@ class Double_Linked_List
         theList.display();
     }
     
-    public void display(){
-        Neighbor theLink = firstLink;
-        
-        while(theLink != null){
-            
-            theLink.display();
-            System.out.println("Next Link: " + theLink.next);
-            theLink = theLink.next;
-            
-            System.out.println();
-        }
-    }
 }
