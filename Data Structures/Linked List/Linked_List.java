@@ -1,3 +1,7 @@
+// Import statements
+import java.util.Scanner;
+
+//Link node class
 class Link{
     
     public String title;
@@ -14,6 +18,7 @@ class Link{
     }
 }//end of Link class
 
+// Linked list class
 class LinkedList{
     
     public Link firstLink;
@@ -112,6 +117,8 @@ class LinkedList{
 
     }
 }//end of LinkedList class
+
+// Main class which extends
 
 public class Linked_List extends LinkedList{
     
