@@ -19,7 +19,7 @@ class Neighbor{
     
     //Display the name and house number of this neighbor
     public void display(){
-        System.out.println("Home Owner: " + homeOwnerName + "/tHouse Number: " + houseNumber);
+        System.out.println("Home Owner: " + homeOwnerName + "\tHouse Number: " + houseNumber);
     }
     
     //Setters and Getters of all fields in Neighbor class
@@ -81,10 +81,15 @@ class DoubleEndedLinkedList{
         while(theLink != null){
             
             theLink.display();
-            System.out.println("Next Link: " + theLink.next);
-            theLink = theLink.next;
+            
+            if(theLink.next != null){
+                System.out.println("Next Link: " + theLink.next.getName());
+            }
             
             System.out.println();
+
+            theLink = theLink.next;
+
         }
     }
 }
