@@ -130,6 +130,40 @@ class DoubleEndedLinkedList{
 
         }
     }
+    
+    public int length(){
+        
+        Neighbor currentLink = firstLink;
+        int counter = 0;
+        
+        if(currentLink == null){
+            return counter;
+        }
+        
+        else{
+            counter++;
+            while(currentLink.next != null){
+                counter++;
+                currentLink = currentLink.next;
+            }
+        }
+        
+        return counter;
+    }
+    
+    public boolean order(){
+        Neighbor currentLink = firstLink;
+        Neighbor tempLink;
+        
+        if(isEmpty()){
+            return false;
+        }
+        
+        while(currentLink != null){
+            
+        }
+    }
+    
 }
 
 
@@ -146,6 +180,9 @@ class Double_Linked_List
         theList.insertAfterKey("Kepler", 13, 8);
 
         theList.display();
+        
+        System.out.println();
+        System.out.println("Length: " + theList.length());
     }
     
 }
