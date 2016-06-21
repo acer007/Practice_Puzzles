@@ -131,6 +131,7 @@ class DoubleEndedLinkedList{
         }
     }
     
+    //Find the number of items in the list
     public int length(){
         
         Neighbor currentLink = firstLink;
@@ -150,19 +151,70 @@ class DoubleEndedLinkedList{
         
         return counter;
     }
-    
-    public boolean order(){
-        Neighbor currentLink = firstLink;
-        Neighbor tempLink;
         
-        if(isEmpty()){
-            return false;
+    // Split a doubly linked list (DLL) into 2 DLLs of
+    // half sizes
+    public Neighbor split(Neighbor head) {
+        
+        Neighbor fast = head, slow = head;
+        
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
         }
-        
-        while(currentLink != null){
+        Neighbor temp = slow.next;
+        slow.next = null;
+        return temp;
+    }
+    
+    //Merge Sort the linked list    
+    public Neighbor mergeSort(Neighbor node) {
             
+        if (node == null || node.next == null) {
+            return node;
+        }
+            
+        Neighbor second = split(node);
+ 
+        // Recur for left and right halves
+        node = mergeSort(node);
+        second = mergeSort(second);
+ 
+        // Merge the two sorted halves
+        return merge(node, second);
+    }
+    
+    //Function to merge the linked lists
+    Neighbor merge(Neighbor first, Neighbor second) {
+        
+        // If first linked list is empty
+        if (first == null) {
+            return second;
+        }
+ 
+        // If second linked list is empty
+        if (second == null) {
+            return first;
+        }
+ 
+        // Pick the smaller value
+        if (first.getNumber() < second.getNumber()) {
+            first.next = merge(first.next, second);
+            first.next.previous = first;
+            first.previous = null;
+            return first;
+        } else {
+            second.next = merge(first, second.next);
+            second.next.previous = second;
+            second.previous = null;
+            return second;
         }
     }
+    
+    public Neighbor getFirstLink(){
+        return firstLink;
+    }
+    
     
 }
 
@@ -183,6 +235,11 @@ class Double_Linked_List
         
         System.out.println();
         System.out.println("Length: " + theList.length());
+        System.out.println();
+        
+        Neighbor head = theList.getFirstLink();
+        theList.mergeSort(head);
+        theList.display();
     }
     
 }
