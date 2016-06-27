@@ -93,11 +93,11 @@ class BinaryTree{
     public void inOrder(Node focusNode){
         
         if (focusNode != null){
+            
             inOrder(focusNode.leftChild);
             focusNode.display();
-        
             inOrder(focusNode.rightChild);
-            focusNode.display();
+            
         }
     }
     
