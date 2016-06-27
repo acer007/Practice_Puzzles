@@ -101,6 +101,31 @@ class BinaryTree{
         }
     }
     
+    //Pre-Order Traversal
+    public void preOrder(Node focusNode){
+        
+        if (focusNode != null){
+            
+            focusNode.display();
+            preOrder(focusNode.leftChild);
+            preOrder(focusNode.rightChild);
+            
+        }
+        
+    }
+    
+    //Post-Order Traversal
+    public void postOrder(Node focusNode){
+        
+        if(focusNode != null){
+            
+            postOrder(focusNode.leftChild);
+            postOrder(focusNode.rightChild);
+            focusNode.display();
+            
+        }
+        
+    }
     
     
 }//end of class BinaryTree
@@ -120,6 +145,10 @@ class Binary_Tree{
         theTree.addNode("Cyril", 771);
         
         theTree.inOrder(theTree.root);
+        System.out.println();
+        theTree.preOrder(theTree.root);
+        System.out.println();
+        theTree.postOrder(theTree.root);
         
     }//end of main
     
