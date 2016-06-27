@@ -2,8 +2,8 @@
 class Neighbor{
     
     //Fields
-    public String homeOwnerName;
-    public int houseNumber;
+    private String homeOwnerName;
+    private int houseNumber;
     
     public Neighbor next;
     public Neighbor previous;
@@ -203,7 +203,8 @@ class DoubleEndedLinkedList{
             first.next.previous = first;
             first.previous = null;
             return first;
-        } else {
+        } 
+        else {
             second.next = merge(first, second.next);
             second.next.previous = second;
             second.previous = null;
@@ -211,6 +212,7 @@ class DoubleEndedLinkedList{
         }
     }
     
+    //Get the head of the linked list
     public Neighbor getFirstLink(){
         return firstLink;
     }
@@ -218,7 +220,7 @@ class DoubleEndedLinkedList{
     
 }
 
-
+//Main function
 class Double_Linked_List
     extends DoubleEndedLinkedList{
         
