@@ -146,18 +146,126 @@ class BinaryTree{
         
             if (focusNode == null){
                 
-                System.out.println("Id is not found");
+                //System.out.println("Id is not found");
                 return null;
                 
             } 
             
         }
         
-        System.out.println("Found the Person with id: " + id);
+        //System.out.println("Found the Person with id: " + id);
         return focusNode;
         
     }
     
+    //delete node
+    public boolean remove(int key){
+        
+        Node focusNode = root;
+        Node parent = root;
+        
+        boolean isItALeftChild = true;
+        
+        //Find the node to delete on the tree
+        while (focusNode.getId() != key){
+            
+            parent = focusNode;
+            
+            if (key < focusNode.getId()){
+                isItALeftChild = true;
+                focusNode = focusNode.leftChild;
+            }
+            
+            else{
+                isItALeftChild = false;
+                focusNode = focusNode.rightChild;
+            }
+            
+            if (focusNode == null){
+                return false;
+            }
+        }
+        
+        if (focusNode.leftChild == null && focusNode.rightChild == null){
+            
+            if (focusNode == root){
+                root = null;
+            }
+            else if (isItALeftChild){
+                parent.leftChild = null;
+            }
+            else{
+                parent.rightChild = null;
+            }
+        }
+        
+        else if (focusNode.rightChild == null){
+            
+            if (focusNode == root){
+                root = focusNode.leftChild;
+            }
+            else if (isItALeftChild){
+                parent.leftChild = focusNode.leftChild;
+            }
+            else{
+                parent.rightChild = focusNode.leftChild;
+            }
+        }
+        
+        else if (focusNode.leftChild == null){
+            
+            if (focusNode == root){
+                root = focusNode.rightChild;
+            }
+            else if (isItALeftChild){
+                parent.leftChild = focusNode.rightChild;
+            }
+            else{
+                parent.rightChild = focusNode.leftChild;
+            }
+        }
+        
+        else{
+            
+            Node replacement = getReplacement(focusNode);
+            
+            if (focusNode == root){
+                root = replacement;
+            }
+            else if(isItALeftChild){
+                parent.leftChild = replacement;
+            }
+            else{
+                parent.rightChild = replacement;
+            }
+            
+            replacement.leftChild = focusNode.leftChild;
+            
+        }
+        
+        return true;
+    }
+    
+    public Node getReplacement(Node replacedNode){
+        
+        Node replacementParent = replacedNode;
+        Node replacement = replacedNode;
+        
+        Node focusNode = replacedNode.rightChild;
+        
+        while (focusNode != null){
+            replacementParent = replacement;
+            replacement = focusNode;
+            focusNode = focusNode.leftChild;
+        }
+        
+        if (replacement != replacedNode.rightChild){
+            replacementParent.leftChild = replacement.rightChild;
+            replacement.rightChild = replacedNode.rightChild;
+        }
+        
+        return replacement;
+    }
     
 }//end of class BinaryTree
 
@@ -203,6 +311,11 @@ class Binary_Tree{
             theTree.inOrder(theTree.root);
         }
         
+        System.out.println();
+        System.out.println("Remove Anya");
+        theTree.remove(441);
+        theTree.inOrder(theTree.root);
+
     }//end of main
     
 }//end of class Binary_Tree
