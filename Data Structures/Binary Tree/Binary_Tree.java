@@ -27,9 +27,11 @@ class Node{
         return id;
     }
     
-    public void setId(int id){
+    // This setter can screw up the order of the tree
+    /*public void setId(int id){
         this.id = id;
     }
+    */
     
     //Display contents of node
     public void display(){
@@ -127,6 +129,35 @@ class BinaryTree{
         
     }
     
+    //find node
+    public Node find(int id){
+        
+        Node focusNode = root;
+        
+        while (id != focusNode.getId()){
+        
+            if (id < focusNode.getId()){
+                focusNode = focusNode.leftChild;
+            }
+                
+            else{
+                focusNode = focusNode.rightChild;
+            }
+        
+            if (focusNode == null){
+                
+                System.out.println("Id is not found");
+                return null;
+                
+            } 
+            
+        }
+        
+        System.out.println("Found the Person with id: " + id);
+        return focusNode;
+        
+    }
+    
     
 }//end of class BinaryTree
 
@@ -146,9 +177,31 @@ class Binary_Tree{
         
         theTree.inOrder(theTree.root);
         System.out.println();
+        
         theTree.preOrder(theTree.root);
         System.out.println();
+        
         theTree.postOrder(theTree.root);
+        System.out.println();
+        
+        Node foundNode = theTree.find(664);
+        
+        if (foundNode != null){
+            System.out.println(foundNode.getName());
+            System.out.println();
+            foundNode.setName("Violette");
+            theTree.inOrder(theTree.root);
+        }
+        
+        System.out.println();
+        foundNode = theTree.find(12);
+        
+         if (foundNode != null){
+            System.out.println(foundNode.getName());
+            System.out.println();
+            foundNode.setName("Violette");
+            theTree.inOrder(theTree.root);
+        }
         
     }//end of main
     
