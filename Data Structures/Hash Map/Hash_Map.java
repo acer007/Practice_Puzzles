@@ -25,16 +25,8 @@ class HashTable{
     //Get the number of elements sotred in the hash table
     public int getNumberOfElements(){
         
-        for (int i = 0; i < theArray.length; i++) {
-        
-            while (theArray[i] != "-1"){
-                
-                this.numOfElements++;
-                
-            }
-        }
-        
         return numOfElements;
+        
     }
     
     //Store each element from an array into a hash table
@@ -60,13 +52,14 @@ class HashTable{
             }
             
             theArray[arrayIndex] = newElement;
+            this.numOfElements++;
          
         }
     
     }//endof class HashFunction
     
     //Find the element in the hash table
-    public void findKey(String key){
+    public String findKey(String key){
         
         //Use the formula of the hash function in order to generate the index in
         //which the key is stored
@@ -75,8 +68,10 @@ class HashTable{
         while (theArray[hashIndex] != "-1"){
             
             if (key == theArray[hashIndex]){
-                System.out.println("Found the value" + key + " at index " + 
+                System.out.println("Found the value " + key + " at index " + 
                 hashIndex);
+                
+                return null;
             }
             
             //Check the next index for the key
@@ -89,6 +84,7 @@ class HashTable{
         
         //If the key is not found anywhere
         System.out.println("Key was not found");
+        return key;
         
     }
     
@@ -120,7 +116,7 @@ class Hash_Map{
         
         System.out.println("Size of Hash Table is " + table1.getArraySize());
         
-        System.out.println("Nuumber of Elements in Hash Tabl is " + table1.getNumberOfElements());
+        System.out.println("Nuumber of Elements in Hash Table is " + table1.getNumberOfElements());
         
         table1.findKey("ice");
         
