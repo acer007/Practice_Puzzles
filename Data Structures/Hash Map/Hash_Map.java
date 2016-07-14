@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.ArrayList;
 
 class HashTable{
     
@@ -11,7 +12,7 @@ class HashTable{
         
         this.arraySize = size;
         this.theArray  = new String[arraySize];
-        Arrays.fill(theArray, "-1");
+        Arrays.fill(this.theArray, "-1");
         
     }
     
@@ -71,7 +72,7 @@ class HashTable{
                 System.out.println("Found the value " + key + " at index " + 
                 hashIndex);
                 
-                return null;
+                return key;
             }
             
             //Check the next index for the key
@@ -102,13 +103,87 @@ class HashTable{
         return number;
     }
     
+    //Check if the array size a prime number
+    public boolean isPrime(int number){
+        
+        if(number % 2 == 0)
+            return false;
+        
+        for (int i = 3; i*i < number; i += 2){
+            
+            if (number % i == 0)
+                return false;
+        }
+        
+        return true;
+    }
+    
+    //Get a prime number given the input
+    public int getNextPrime(int number){
+        
+        for (int i = number; true; i++){
+            
+            if (isPrime(i))
+                return i;
+            
+        }
+        
+    }
+    
+    //Increase the size of this array
+    public void increaseArraySize(int number){
+        
+        System.out.println("HELLO!!!");
+        int newSize = getNextPrime(number);
+        
+        System.out.println("DO YOU SEE ME?");
+        moveOldArray(newSize);
+        
+    }
+    
+    //Copy contents of the old array into a temp array with no spaces and resize
+    //the old array. Use the hash function to transfer all the contents from the
+    //temp array into the old array
+    public void moveOldArray(int size){
+        
+        String[] cleanArray = removeEmptySpaces(this.theArray);
+        
+        this.theArray = new String[size];
+        
+        this.arraySize = size;
+        
+        Arrays.fill(this.theArray, "-1");
+        
+                System.out.println("WHY IS THIS THE ERROR");
+
+        HashFunction(cleanArray, theArray);
+    }
+    
+    //Return an array with no empty spaces by using an Array List since it
+    //constantly resizes itself
+    public String[] removeEmptySpaces(String[] arrayToClean){
+        
+        ArrayList<String> stringList = new ArrayList<String>();
+        
+        for (String theString: arrayToClean){
+            
+            if(!theString.equals("-1") && !theString.equals(""))
+                stringList.add(theString);
+            
+        }
+        
+        return stringList.toArray(new String[stringList.size()]);
+        
+    }
+    
+    
 }//end of class HashTable
 
 class Hash_Map{
     
     public static void main(String[] args){
         
-        HashTable table1 = new HashTable(30);
+        /*HashTable table1 = new HashTable(30);
         
         String[] array1 = {"660", "air", "pecan pie", "ice", "toast"};
         
@@ -116,10 +191,27 @@ class Hash_Map{
         
         System.out.println("Size of Hash Table is " + table1.getArraySize());
         
-        System.out.println("Nuumber of Elements in Hash Table is " + table1.getNumberOfElements());
+        System.out.println("Nuumber of Elements in Hash Table is " + 
+        table1.getNumberOfElements());
         
         table1.findKey("ice");
         
+        table1.findKey("stones");
+        
+        table1.increaseArraySize(32);*/
+        
+        /*System.out.println("Size of Hash Table is " + table1.getArraySize());
+        
+        System.out.println("Nuumber of Elements in Hash Table is " + 
+        table1.getNumberOfElements());
+        */
+        
+        HashTable table2 = new HashTable(30);
+        String[] array1 = {"660", "air", "pecan pie", "ice", "toast"};
+        table2.HashFunction(array1, table2.theArray);
+        
+        table2.increaseArraySize(32);
+        System.out.println("COMPLETED");
     }
     
 }
