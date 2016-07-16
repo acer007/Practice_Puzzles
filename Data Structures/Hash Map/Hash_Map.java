@@ -45,7 +45,7 @@ class HashTable{
             + newElement);
          
             //Check for collisions
-            while (outputArray[n] != "-1"){
+            while (outputArray[arrayIndex] != "-1"){
                 
                 arrayIndex++;
                 System.out.println("Collision! Try Index " + arrayIndex);
@@ -58,7 +58,7 @@ class HashTable{
          
         }
     
-    }//endof class HashFunction
+    }//end of HashFunction
     
     //Find the element in the hash table
     public String findKey(String key){
