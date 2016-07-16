@@ -31,7 +31,7 @@ class HashTable{
     }
     
     //Store each element from an array into a hash table
-    public void HashFunction(String[] inputArray, String[] theArray){
+    public void HashFunction(String[] inputArray, String[] outputArray){
     
         for(int n = 0; n < inputArray.length; n++){
         
@@ -45,7 +45,7 @@ class HashTable{
             + newElement);
          
             //Check for collisions
-            while (theArray[n] != "-1"){
+            while (outputArray[n] != "-1"){
                 
                 arrayIndex++;
                 System.out.println("Collision! Try Index " + arrayIndex);
@@ -53,7 +53,7 @@ class HashTable{
             
             }
             
-            theArray[arrayIndex] = newElement;
+            outputArray[arrayIndex] = newElement;
             this.numOfElements++;
          
         }
