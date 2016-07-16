@@ -39,10 +39,12 @@ class HashTable{
          
             //A Function creating an index in theArray where the newElement 
             //will be stored
-            int arrayIndex = convertString(newElement) % 29;
-         
-            System.out.println("Array Index: " + arrayIndex + " for Element: " 
-            + newElement);
+            int arrayIndex = 13 - convertString(newElement) % 29;
+            
+            if (arrayIndex < 0)
+                arrayIndex *= -1;
+            
+            System.out.printf("Array Index: %3d for Element: %s\n", arrayIndex, newElement);
          
             //Check for collisions
             while (outputArray[arrayIndex] != "-1"){
@@ -65,11 +67,16 @@ class HashTable{
         
         //Use the formula of the hash function in order to generate the index in
         //which the key is stored
-        int hashIndex = convertString(key) % 29;
+        int hashIndex = 13 - convertString(key) % 29;
+        
+        if (hashIndex < 0)
+            hashIndex *= -1;
         
         while (theArray[hashIndex] != "-1"){
             
             if (key == theArray[hashIndex]){
+                
+                System.out.println();
                 System.out.println("Found the value " + key + " at index " + 
                 hashIndex);
                 
@@ -147,33 +154,36 @@ class HashTable{
         
         String[] cleanArray = removeEmptySpaces(this.theArray);
         
-        //Display
+        /*Display the cleanArray after being filled
         System.out.println();
         System.out.println("Clean Array contents");
         for(int k = 0; k < cleanArray.length; k++)
-            System.out.println("Index: " + k + "    Contains " + cleanArray[k]);
+            System.out.println("Index: " + k + "    Contains " + 
+            cleanArray[k]);*/
             
-        //Display
+        /*Display theArray before resizing
         System.out.println();
         System.out.println("THE ARRAY contents BEFORE RESIZING");
         for(int k = 0; k < theArray.length; k++)
-            System.out.println("Index: " + k + "    Contains " + theArray[k]);
+            System.out.println("Index: " + k + "    Contains " + theArray[k]);*/
         
         this.theArray = new String[size];
         
         this.arraySize = size;
         
-        //Display
+        /*Display theArray's new size
         System.out.println();
-        System.out.println("THE ARRAY SIZE IS: " + this.getArraySize());
+        System.out.println("THE ARRAY SIZE IS: " + this.getArraySize());*/
         
         Arrays.fill(this.theArray, "-1");
         
-        //Display
+        /*Display theArray after resizing
         System.out.println();
         System.out.println("THE ARRAY contents AFTER RESIZING");
         for(int n = 0; n < theArray.length; n++)
-            System.out.println("Index: " + n + "    Contains " + theArray[n]);
+            System.out.println("Index: " + n + "    Contains " + theArray[n]);*/
+        
+        this.numOfElements = 0;
         HashFunction(cleanArray, this.theArray);
     }
     
@@ -190,16 +200,16 @@ class HashTable{
             
         }
         
-        //Display
+        /*Display the stringList
         System.out.println();
         System.out.println("STRING LIST contents");
         for(int n = 0; n < stringList.size(); n++)
-            System.out.println("Index: " + n + "    Contains " + stringList.get(n));
+            System.out.println("Index: " + n + "    Contains " + 
+            stringList.get(n));*/
         
         return stringList.toArray(new String[stringList.size()]);
         
     }
-    
     
 }//end of class HashTable
 
@@ -207,7 +217,7 @@ class Hash_Map{
     
     public static void main(String[] args){
         
-        /*HashTable table1 = new HashTable(30);
+        HashTable table1 = new HashTable(30);
         
         String[] array1 = {"660", "air", "pecan pie", "ice", "toast"};
         
@@ -215,27 +225,28 @@ class Hash_Map{
         
         System.out.println("Size of Hash Table is " + table1.getArraySize());
         
-        System.out.println("Nuumber of Elements in Hash Table is " + 
+        System.out.println("Number of Elements in Hash Table is " + 
         table1.getNumberOfElements());
         
         table1.findKey("ice");
         
+        System.out.println();
         table1.findKey("stones");
         
-        table1.increaseArraySize(32);*/
+        table1.increaseArraySize(32);
         
-        /*System.out.println("Size of Hash Table is " + table1.getArraySize());
+        System.out.println();
+        System.out.println("Size of Hash Table is " + table1.getArraySize());
         
-        System.out.println("Nuumber of Elements in Hash Table is " + 
+        System.out.println("Number of Elements in Hash Table is " + 
         table1.getNumberOfElements());
-        */
         
-        HashTable table2 = new HashTable(30);
-        String[] array1 = {"660", "air", "pecan pie", "ice", "toast"};
-        table2.HashFunction(array1, table2.theArray);
+        System.out.println();
+        table1.findKey("ice");
         
-        table2.increaseArraySize(32);
+        System.out.println();
         System.out.println("COMPLETED");
+        
     }
     
 }
