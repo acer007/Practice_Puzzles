@@ -37,7 +37,8 @@ class HashTable{
         
             String newElement = inputArray[n];
          
-            // Creating an index in theArray where the newElement will be stored
+            //A Function creating an index in theArray where the newElement 
+            //will be stored
             int arrayIndex = convertString(newElement) % 29;
          
             System.out.println("Array Index: " + arrayIndex + " for Element: " 
@@ -48,7 +49,7 @@ class HashTable{
                 
                 arrayIndex++;
                 System.out.println("Collision! Try Index " + arrayIndex);
-                arrayIndex %= arraySize;
+                arrayIndex %= this.arraySize;
             
             }
             
@@ -133,10 +134,8 @@ class HashTable{
     //Increase the size of this array
     public void increaseArraySize(int number){
         
-        System.out.println("HELLO!!!");
         int newSize = getNextPrime(number);
         
-        System.out.println("DO YOU SEE ME?");
         moveOldArray(newSize);
         
     }
@@ -148,15 +147,34 @@ class HashTable{
         
         String[] cleanArray = removeEmptySpaces(this.theArray);
         
+        //Display
+        System.out.println();
+        System.out.println("Clean Array contents");
+        for(int k = 0; k < cleanArray.length; k++)
+            System.out.println("Index: " + k + "    Contains " + cleanArray[k]);
+            
+        //Display
+        System.out.println();
+        System.out.println("THE ARRAY contents BEFORE RESIZING");
+        for(int k = 0; k < theArray.length; k++)
+            System.out.println("Index: " + k + "    Contains " + theArray[k]);
+        
         this.theArray = new String[size];
         
         this.arraySize = size;
         
+        //Display
+        System.out.println();
+        System.out.println("THE ARRAY SIZE IS: " + this.getArraySize());
+        
         Arrays.fill(this.theArray, "-1");
         
-                System.out.println("WHY IS THIS THE ERROR");
-
-        HashFunction(cleanArray, theArray);
+        //Display
+        System.out.println();
+        System.out.println("THE ARRAY contents AFTER RESIZING");
+        for(int n = 0; n < theArray.length; n++)
+            System.out.println("Index: " + n + "    Contains " + theArray[n]);
+        HashFunction(cleanArray, this.theArray);
     }
     
     //Return an array with no empty spaces by using an Array List since it
@@ -171,6 +189,12 @@ class HashTable{
                 stringList.add(theString);
             
         }
+        
+        //Display
+        System.out.println();
+        System.out.println("STRING LIST contents");
+        for(int n = 0; n < stringList.size(); n++)
+            System.out.println("Index: " + n + "    Contains " + stringList.get(n));
         
         return stringList.toArray(new String[stringList.size()]);
         
