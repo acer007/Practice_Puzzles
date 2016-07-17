@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class HashTable{
     
@@ -272,52 +273,186 @@ class Hash_Map{
     
     public static void main(String[] args){
         
-        HashTable table1 = new HashTable(30);
+        //First tests
+        /*
+        try{
+            HashTable table1 = new HashTable(30);
+            
+            String[] array1 = {"660", "air", "pecan pie", "ice", "toast"};
+            
+            table1.HashFunction(array1, table1.theArray);
+            
+            System.out.println();
+            System.out.println("Size of Hash Table is " + table1.getArraySize());
+            
+            System.out.println();
+            System.out.println("Number of Elements in Hash Table is " + 
+            table1.getNumberOfElements());
+            
+            table1.findKey("ice");
+            
+            System.out.println();
+            table1.findKey("stones");
+            
+            table1.increaseArraySize(32);
+            
+            System.out.println();
+            System.out.println("Size of Hash Table is " + table1.getArraySize());
+            
+            System.out.println("Number of Elements in Hash Table is " + 
+            table1.getNumberOfElements());
+            
+            System.out.println();
+            table1.findKey("ice");
+            
+            table1.display();
+            
+            table1.addItem("PENGUIN");
+            System.out.println("Size of Hash Table is " + table1.getArraySize());
+            System.out.println("Number of Elements in Hash Table is " + 
+            table1.getNumberOfElements());
+            
+            table1.display();
+            table1.findKey("PENGUIN");
+            
+            table1.deleteItem("toast");
+            table1.display();
         
-        String[] array1 = {"660", "air", "pecan pie", "ice", "toast"};
+            table1.deleteItem("Carlos");
+            System.out.println();
+            System.out.println("COMPLETED");
         
-        table1.HashFunction(array1, table1.theArray);
+        }
+        catch (Exception e){
         
-        System.out.println();
-        System.out.println("Size of Hash Table is " + table1.getArraySize());
+            System.out.println(e.getMessage());
         
-        System.out.println();
-        System.out.println("Number of Elements in Hash Table is " + 
-        table1.getNumberOfElements());
+        }    
+        */
         
-        table1.findKey("ice");
+        //Second Tests
+        try{
+            
+            //Define Variables
+            Scanner scanInput = new Scanner(System.in);
+            //Scanner scanNum = new Scanner(System.in);
+            //Scanner scanWords = new Scanner(System.in);
+            boolean cycle = true;
+            
+            System.out.print("Enter a size for your hash table: ");
+            
+            //Check input of the size of the hash table to be a positive integer
+            while (cycle){
+                
+                if (!scanInput.hasNextInt()){
+                        
+                    String badInputStr = scanInput.next();
+                    System.out.println("Re-enter the size as a number: ");
+                        
+                }
+                
+                if (scanInput.hasNextInt()){
+                    
+                    int size = scanInput.nextInt();
+                    
+                    if (size < 0){
+                                        
+                        int badInputInt = size;
+                        System.out.println("Re-enter the size as a positive number: ");
+
+                    }
+                            
+                    else{
+                                        
+                        HashTable hashTable1 = new HashTable(size);
+                                        
+                        System.out.println("Please enter a list of words. Type \"stop\" to stop input:\n");
+                            
+                        while (scanInput.hasNext()){
+                                            
+                            String inputWord = scanInput.next();
+                                            
+                            if (inputWord.toLowerCase().compareTo("stop") == 0){
+                                
+                                cycle = false;
+                                break;
+                                
+                            }
+                                            
+                            else{
+                                
+                                hashTable1.addItem(inputWord);
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                        
+                }
+            
+            }
+            
+            System.out.println("COMPLETED");
+            
+        }
         
-        System.out.println();
-        table1.findKey("stones");
-        
-        table1.increaseArraySize(32);
-        
-        System.out.println();
-        System.out.println("Size of Hash Table is " + table1.getArraySize());
-        
-        System.out.println("Number of Elements in Hash Table is " + 
-        table1.getNumberOfElements());
-        
-        System.out.println();
-        table1.findKey("ice");
-        
-        table1.display();
-        
-        table1.addItem("PENGUIN");
-        System.out.println("Size of Hash Table is " + table1.getArraySize());
-        System.out.println("Number of Elements in Hash Table is " + 
-        table1.getNumberOfElements());
-        
-        table1.display();
-        table1.findKey("PENGUIN");
-        
-        table1.deleteItem("toast");
-        table1.display();
-        
-        table1.deleteItem("Carlos");
-        System.out.println();
-        System.out.println("COMPLETED");
+        catch (Exception e){
+            
+            System.out.println(e.getMessage());
+            
+        }
         
     }
     
 }
+
+/*while (cycle){
+                
+    int size = scanNum.nextInt();
+                
+    if (scanNum.hasNextInt()){
+                    
+    if (size < 0){
+                        
+        int badInputInt = size;
+        System.out.println("Re-enter the size as a positive number: ");
+        //size = scanNum.nextInt();
+                        
+    }
+                    
+    else{
+                        
+        HashTable hashTable1 = new HashTable(size);
+                        
+        System.out.println("Please enter a list of words. Type \"stop\" to stop input:\n");
+            
+        while (scanWords.hasNext()){
+                            
+            String inputWord = scanWords.next();
+                            
+            if (inputWord.toLowerCase().compareTo("stop") == 0){
+                break;
+            }
+                            
+            else{
+                hashTable1.addItem(inputWord);
+            }
+            
+        }
+                        
+        cycle = false;
+                        
+    }
+                    
+}
+                
+                if (scanNum.hasNext()){
+                    
+                    String badInputStr = scanNum.next();
+                    System.out.println("Re-enter the size as a number: ");
+                    
+                }
+            
+            }
+            */
