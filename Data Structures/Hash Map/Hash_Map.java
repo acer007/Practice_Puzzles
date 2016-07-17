@@ -41,11 +41,23 @@ class HashTable{
             //will be stored
             int arrayIndex = 13 - convertString(newElement) % 29;
             
+            //If the calculated index is less than 0
             if (arrayIndex < 0)
                 arrayIndex *= -1;
             
-            System.out.printf("Array Index: %3d for Element: %s\n", arrayIndex, newElement);
+            //System.out.printf("Array Index: %3d for Element: %s\n", arrayIndex, 
+            //newElement);
          
+            //If the calculated index is too large for the current array, 
+            //increase the array size and call the hash function again
+            if (arrayIndex > this.theArray.length){
+                
+                int increaseSize = getArraySize() * 2;
+                increaseArraySize(increaseSize);
+                HashFunction(inputArray, theArray);
+                
+            }
+            
             //Check for collisions
             while (outputArray[arrayIndex] != "-1"){
                 
@@ -63,7 +75,7 @@ class HashTable{
     }//end of HashFunction
     
     //Find the element in the hash table
-    public String findKey(String key){
+    public int findKey(String key){
         
         //Use the formula of the hash function in order to generate the index in
         //which the key is stored
@@ -80,7 +92,7 @@ class HashTable{
                 System.out.println("Found the value " + key + " at index " + 
                 hashIndex);
                 
-                return key;
+                return hashIndex;
             }
             
             //Check the next index for the key
@@ -93,13 +105,14 @@ class HashTable{
         
         //If the key is not found anywhere
         System.out.println("Key was not found");
-        return key;
+        return -1;
         
     }
     
     //Convert a string to an int
     public int convertString(String word){
         
+        word = word.toLowerCase();
         int number = 0;
         
         for (int i = 0; i < word.length(); i++){
@@ -211,6 +224,45 @@ class HashTable{
         
     }
     
+    //Add an item to the Hashtable
+    public void addItem(String word){
+        
+        String wordLowCase = word.toLowerCase();
+        String[] singleItemArray = {wordLowCase};
+        HashFunction(singleItemArray, this.theArray);
+        System.out.println("Inserted " + word + " into hash table");
+        
+    }
+    
+    //Delete an item from the Hashtable
+    public String deleteItem(String key){
+        
+        String keyLowCase = key.toLowerCase();
+        int keyIndex = findKey(keyLowCase);
+        
+        if (keyIndex >= 0){
+            
+            this.theArray[keyIndex] = "-1";
+            System.out.println(key + "was deleted from the hash table");
+            return keyLowCase;
+            
+        }
+        
+        else{
+            System.out.println("The word " + key + " does not exist in the hash table");
+            return key;
+        }
+        
+    }
+    
+    //Display the Hashtable
+    public void display(){
+        
+        for(int n = 0; n < theArray.length; n++)
+            //System.out.println("Index: " + n + "    Contains " + theArray[n]);
+            System.out.printf("Table Index: %3d Contains: %s\n", n, theArray[n]);
+    }
+    
 }//end of class HashTable
 
 class Hash_Map{
@@ -223,8 +275,10 @@ class Hash_Map{
         
         table1.HashFunction(array1, table1.theArray);
         
+        System.out.println();
         System.out.println("Size of Hash Table is " + table1.getArraySize());
         
+        System.out.println();
         System.out.println("Number of Elements in Hash Table is " + 
         table1.getNumberOfElements());
         
@@ -243,6 +297,16 @@ class Hash_Map{
         
         System.out.println();
         table1.findKey("ice");
+        
+        table1.display();
+        
+        table1.addItem("PENGUIN");
+        System.out.println("Size of Hash Table is " + table1.getArraySize());
+        System.out.println("Number of Elements in Hash Table is " + 
+        table1.getNumberOfElements());
+        
+        table1.display();
+        table1.findKey("PENGUIN");
         
         System.out.println();
         System.out.println("COMPLETED");
