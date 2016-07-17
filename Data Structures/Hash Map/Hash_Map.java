@@ -35,7 +35,7 @@ class HashTable{
     
         for(int n = 0; n < inputArray.length; n++){
         
-            String newElement = inputArray[n];
+            String newElement = inputArray[n].toLowerCase();
          
             //A Function creating an index in theArray where the newElement 
             //will be stored
@@ -79,6 +79,7 @@ class HashTable{
         
         //Use the formula of the hash function in order to generate the index in
         //which the key is stored
+        key = key.toLowerCase();
         int hashIndex = 13 - convertString(key) % 29;
         
         if (hashIndex < 0)
@@ -86,7 +87,7 @@ class HashTable{
         
         while (theArray[hashIndex] != "-1"){
             
-            if (key == theArray[hashIndex]){
+            if (key.compareToIgnoreCase(theArray[hashIndex]) == 0){
                 
                 System.out.println();
                 System.out.println("Found the value " + key + " at index " + 
@@ -104,7 +105,7 @@ class HashTable{
         }
         
         //If the key is not found anywhere
-        System.out.println("Key was not found");
+        System.out.println("Key was not found: " + key + " " + hashIndex);
         return -1;
         
     }
@@ -112,7 +113,8 @@ class HashTable{
     //Convert a string to an int
     public int convertString(String word){
         
-        word = word.toLowerCase();
+        //word = word.toLowerCase();
+        //System.out.println("The modified word is " + word);
         int number = 0;
         
         for (int i = 0; i < word.length(); i++){
@@ -227,8 +229,8 @@ class HashTable{
     //Add an item to the Hashtable
     public void addItem(String word){
         
-        String wordLowCase = word.toLowerCase();
-        String[] singleItemArray = {wordLowCase};
+        //String wordLowCase = word.toLowerCase();
+        String[] singleItemArray = {word};
         HashFunction(singleItemArray, this.theArray);
         System.out.println("Inserted " + word + " into hash table");
         
@@ -258,6 +260,7 @@ class HashTable{
     //Display the Hashtable
     public void display(){
         
+        System.out.println();
         for(int n = 0; n < theArray.length; n++)
             //System.out.println("Index: " + n + "    Contains " + theArray[n]);
             System.out.printf("Table Index: %3d Contains: %s\n", n, theArray[n]);
@@ -308,6 +311,10 @@ class Hash_Map{
         table1.display();
         table1.findKey("PENGUIN");
         
+        table1.deleteItem("toast");
+        table1.display();
+        
+        table1.deleteItem("Carlos");
         System.out.println();
         System.out.println("COMPLETED");
         
