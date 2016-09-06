@@ -43,6 +43,25 @@ public class AverageSpeed{
             
         }
         
+        //Convert Average Speed and Time taken to run
+        double kilometers = ((int)((miles * 1.6) * 100)) / 100.00;
+        double kmPerSec = 24 * 1.6 / 6035; //24 miles in 1 hour 40 minutes and 35 seconds
+        //double avgSpeedSec = ((int)((kilometers / kmPerSec) * 100)) / 100.00;
+        
+        int avgSpeedSec = (int)(kilometers / kmPerSec);
+        System.out.println(avgSpeedSec + " seconds");
+
+        int hour = avgSpeedSec / 3600;
+        int minutes = avgSpeedSec % 3600 / 60;
+        int seconds = avgSpeedSec % 3600 % 60;
+        
+        //Display Conversions
+        System.out.println(miles + " miles is equal to " + kilometers + 
+                            " kilometers");
+                            
+        System.out.println("The average speed to run that distance is : " + 
+                            hour + " hours " + minutes + " minutes " + seconds 
+                            + " seconds");
         
     }//end of main
     
