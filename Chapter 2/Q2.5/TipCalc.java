@@ -16,9 +16,9 @@ public class TipCalc{
         //Check input
         while (scanInput.hasNext()){
             
-            if (scanInput.hasNextInt()){
+            if (scanInput.hasNextDouble()){
                 
-                subTotal = scanInput.nextInt();
+                subTotal = scanInput.nextDouble();
                 
                 if (subTotal < 0){
                     
@@ -47,9 +47,9 @@ public class TipCalc{
         
         while (scanInput.hasNext()){
             
-            if (scanInput.hasNextInt()){
+            if (scanInput.hasNextDouble()){
                 
-                tip = scanInput.nextInt();
+                tip = scanInput.nextDouble();
                 
                 if (tip < 0){
                     
@@ -73,7 +73,14 @@ public class TipCalc{
             
         }
         
+        //Calculate Tip and Total
+        double tipDecimal = tip / 100;
+        double tipMoney = ((int)((tipDecimal * subTotal) * 100)) / 100.00;
+        double total = subTotal + tipMoney;
         
+        //Display Output
+        System.out.println("For a " + tip + "%, the tip is $" + tipMoney + 
+                            " and the total is $" + total);
         
     }//end of main
     
