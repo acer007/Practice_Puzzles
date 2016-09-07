@@ -22,7 +22,8 @@ public class CompoundInterest{
                                 "\tamount deposited by the user per month and " + 
                                 "the annual interest rate of 5.00%");
                                 
-            System.out.print("\n\tEnter the amount of money saved into the account per month: $");
+            System.out.print("\n\tEnter the amount of money saved into the " + 
+                                "account per month: $");
             double money = 0;
             
             //Verify Input
@@ -51,9 +52,15 @@ public class CompoundInterest{
             double amount = money;
             double balance = 0;
             
+            for (int k = 0; k < 6; k++){
+                balance = (balance + amount) * ( 1 + monthlyInt);
+                //System.out.println("Month " + (k+1) + " $" + balance);
+            }
             
             //Display
-        
+            balance = ((int)(balance * 100)) / 100.00;
+            System.out.println("\tThe account balance after the 6th month " + 
+                                "is $" + balance);
         }
         
         catch (Exception e){
