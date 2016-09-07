@@ -16,13 +16,14 @@ public class NumberOfYears{
             System.out.println("Minutes Converter" + 
                                 "\n--------------------------------\n");
             System.out.print("Enter the number of minutes: ");
+            int minutes = 0;
             
             //Verify Input
             while (scanInput.hasNext()){
                 
                 if (scanInput.hasNextInt()){
                     
-                    int minutes = scanInput.nextInt();
+                    minutes = scanInput.nextInt();
                     
                     if (minutes < 0){
                         
@@ -45,8 +46,16 @@ public class NumberOfYears{
                 }
             }
             
+            /*Convert minutes to years and days
+             *525600 minutes in a year
+             *1440 minutes in a day
+             */
+            int years = minutes / 525600;
+            int days = (minutes % 525600) / 1440;
             
-        
+            //Display conversion
+            System.out.println(minutes + " minutes is equal to " + years + 
+                                " years and " + days + " days.");
         }
         
         catch (Exception e){
