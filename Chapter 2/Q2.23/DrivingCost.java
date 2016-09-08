@@ -10,15 +10,18 @@ public class DrivingCost{
         
             //Declare Scanner and Variables
             Scanner scanInput = new Scanner(System.in);
-            double distance=0;
+            double distance = -1;
             //, milesPerGallon, pricePerGallon, cost;
-            boolean sentinel1 =true;
+            boolean sentinel1 = true;
             
             //Prompt for input
             System.out.print("Enter the driving distance in miles: ");
             while (sentinel1){
-                sentinel1 = verifyInput(scanInput, distance);
-                System.out.println("\nDistance: " + distance);
+                distance = verifyInput(scanInput);
+                //System.out.println("\nDistance: " + distance);
+                if (distance != -1){
+                    sentinel1 = false;
+                }
             }
         
         }
@@ -32,7 +35,9 @@ public class DrivingCost{
     //Functions
     
     //Verify input
-    public static boolean verifyInput(Scanner scanInput, double input){
+    public static double verifyInput(Scanner scanInput){
+        
+        double input = -1;
         
         if (scanInput.hasNextDouble()){
             
@@ -41,19 +46,20 @@ public class DrivingCost{
                 if (input < 0){
                     double badInputDoub = input;
                     System.out.print("\nRe-enter the distance: ");
-                    return true;
+                    return -1;
                         
                 }
                 else
-                    return false;
+                    return input;
         }
         else{
             String badInputStr = scanInput.next();
             System.out.print("\nRe-enter the distance: ");
-            return true;
+            return -1;
         }
         
     }
+    
     
     //Calculation
     
