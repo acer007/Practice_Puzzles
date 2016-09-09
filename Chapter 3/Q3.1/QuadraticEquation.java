@@ -14,6 +14,7 @@ public class QuadraticEquation{
             double a = 0, b = 0, c = 0;
             double sol1 = 0, sol2 = 0;
             boolean sentinel1 = true, sentinel2 = true, sentinel3 = true;
+            double discriminant = 0;
             
             //Prompt input
             System.out.print("For ax^2 + bx + c, enter a, b, and c: ");
@@ -45,10 +46,29 @@ public class QuadraticEquation{
                 
             }
             
+            //Find Discriminant
+            discriminant = findDiscriminant(a, b, c);
+            
             //Calculate Solution
+            if (discriminant > 0){
+                
+                sol1 = findPos(a, b, c);
+                sol2 = findNeg(a, b ,c);
+                System.out.println("The solutions are " + sol1 + " and " +
+                                    sol2);
+                
+            }
             
+            else if (discriminant == 0){
+                
+               sol1 = findPos(a, b, c);
+               System.out.println("The solution is " + sol1);
+                
+            }
             
-            //Display
+            else{
+                System.out.println("The equation has no real roots");
+            }
             
         }
         
@@ -60,7 +80,10 @@ public class QuadraticEquation{
     
     //Methods
     
-    //Verify input
+    /* Verify input
+     * Parameters: Scanner
+     * return: double
+     */
     public static double verifyInput(Scanner scanInput){
         
         double input = -1;
@@ -79,4 +102,42 @@ public class QuadraticEquation{
         
     }
     
+    /* Find discriminant
+     * Parameters: double x, y, and z
+     * return: double
+     */
+     
+    public static double findDiscriminant (double x, double y, double z){
+        return (Math.pow(y, 2) - 4 * x * z);
+    }
+    
+    /* Find the positive solution
+     * Parameters: double x, y, z
+     * return: double
+     */
+    public static double findPos (double x, double y, double z){
+        
+        double ans = 0;
+        double numerator = -y + Math.sqrt(Math.pow(y, 2) - (4 * x * z));
+        double denominator = 2 * x;
+        ans = (int)(numerator / denominator * 1000) / 1000.00;
+        return ans;
+        
+    }
+     
+    /* Find the negative solution
+     * Parameters: double x, y, z
+     * return: double
+     */
+    public static double findNeg (double x, double y, double z){
+        
+        double ans = 0;
+        double numerator = -y - Math.sqrt(Math.pow(y, 2) - (4 * x * z));
+        double denominator = 2 * x;
+        ans = (int)(numerator / denominator * 1000) / 1000.00;
+        return ans;
+        
+    }
+     
+     
 }//end of class
