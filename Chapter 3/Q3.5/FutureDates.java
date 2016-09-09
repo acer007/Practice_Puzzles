@@ -89,7 +89,8 @@ public class FutureDates{
             }
             
             //Display
-            wde = elapsedDays % 7;
+            
+            wde = (elapsedDays + wds) % 7;
             weekdayEnd = weekdayStr(wde);
             
             System.out.println("Today is " + weekDayStart + " and the future day is " + 
