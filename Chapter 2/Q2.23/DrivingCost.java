@@ -69,7 +69,7 @@ public class DrivingCost{
             
                 if (input < 0){
                     double badInputDoub = input;
-                    System.out.print("\nRe-enter the distance: ");
+                    System.out.print("\nRe-enter the value: ");
                     return -1;
                         
                 }
@@ -78,7 +78,7 @@ public class DrivingCost{
         }
         else{
             String badInputStr = scanInput.next();
-            System.out.print("\nRe-enter the distance: ");
+            System.out.print("\nRe-enter the value: ");
             return -1;
         }
         
