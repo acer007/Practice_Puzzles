@@ -10,42 +10,58 @@ public class ThreeSum{
             
             //Declare Scanner and Variables
             Scanner scanInput = new Scanner(System.in);
+            boolean sentinel = true;
             
-            int num1 = (int)(System.currentTimeMillis() % 10);
-            int num2 = (int)(System.currentTimeMillis() / 7 % 10);
-            int num3 = (int)(System.currentTimeMillis() / 4 % 10);
-            
-            //Prompt input
-            System.out.print("What is " + num1 + " + " + num2 + 
-                                " + " + num3 + " = ");
-                                
-            //Verify input
-            int answer = 0;
-            
-            //Check input
-            while (scanInput.hasNext()){
+            while (sentinel){
                 
-                if (scanInput.hasNextInt()){
+                int num1 = (int)(System.currentTimeMillis() % 10);
+                int num2 = (int)(System.currentTimeMillis() / 7 % 10);
+                int num3 = (int)(System.currentTimeMillis() / 4 % 10);
+                
+                //Prompt input
+                System.out.print("Enter 'q' to quit program \n" + 
+                                "What is " + num1 + " + " + num2 + 
+                                    " + " + num3 + " = ");
+                                    
+                //Verify input
+                int answer = 0;
+                
+                while (scanInput.hasNext()){
                     
-                    answer = scanInput.nextInt();
-                    break;
+                    if (scanInput.hasNextInt()){
+                        
+                        answer = scanInput.nextInt();
+                        
+                        if ((num1 + num2 + num3) == answer)
+                            System.out.println("Correct!\n");
+                    
+                        else
+                            System.out.println("Incorrect, the answer is " + 
+                                                (num1 + num2 + num3) + "\n");
+                            
+                        break;
+                        
+                    }
+                    
+                    else{
+                        
+                        String badInputStr = scanInput.next();
+                        
+                        if (badInputStr.equals("q")){
+                            sentinel = false;
+                            System.out.println("Program is canceled");
+                            break;
+                        }
+                        
+                        else{
+                            System.out.print("\nPlease enter an answer as an integer: ");
+                        }
+                        
+                    }
                     
                 }
-                
-                else{
-                    
-                    String badInputStr = scanInput.next();
-                    System.out.print("\nPlease enter an answer as an integer: ");
-                    
-                }
-                
+            
             }
-            
-            if ((num1 + num2 + num3) == answer)
-                System.out.println("Correct!");
-                
-            else
-                System.out.println("Incorrect, the answer is " + (num1 + num2 + num3));
             
         }
         
