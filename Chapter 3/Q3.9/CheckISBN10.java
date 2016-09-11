@@ -57,17 +57,5 @@ public class CheckISBN10{
         
     }//end of main
     
-    //Method
-    
-    /* findCheckSum
-     * Parameters: String
-     * return: void
-     */
-    public static void findCheckSum(String isbn){
-    
-        
-        
-    }
-    
     
 }//end of class
