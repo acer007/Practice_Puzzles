@@ -43,11 +43,11 @@ public class CheckISBN10{
             for (int k = 0; k < 9; k++){
                 
                 //must copy the checkSum int into a String variable in order to dereference it
-                System.out.println("Number: " + (int)(isbnStr.charAt(k)));
-                checkSum += (int)(isbnStr.charAt(k)) * (k+1);
+                System.out.println("Number: " + (isbnStr.charAt(k)));
+                checkSum += (isbnStr.charAt(k) - 48) * (k+1);
                 System.out.println("Checksum: " + checkSum);
             }
-            
+            checkSum = checkSum % 11;
             
         }
         
