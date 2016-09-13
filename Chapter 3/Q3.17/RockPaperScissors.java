@@ -13,17 +13,17 @@ public class RockPaperScissors{
             Scanner scanInput = new Scanner(System.in);
             
             //Variables
-            boolean proceed = true, sentinel = true;
+            boolean proceed = true, sentinel = true, loop = true;
+            String key = "e";
             int input = -1;
-            
-            //Computer generated number
-            int comp = randomInt();
-            
-            //Prompt input
-            System.out.println("Scissors(0) Rock(1) Paper(2)");
             
             while (proceed){
                 
+                //Computer generated number
+                int comp = randomInt();
+                
+                //Prompt input
+                System.out.println("Scissors(0) Rock(1) Paper(2)");
                 System.out.print("Enter Input: ");
                 
                 //Verify input
@@ -39,10 +39,69 @@ public class RockPaperScissors{
                 }
                 
                 //Determine Winner
+                //Computer picked Scissors
+                if (comp == 0){
+                    if (input == 0)
+                        System.out.println("Computer picked Scissors" + 
+                        "\nPlayer picked Scissors\n" + "Outcome: Tie");
+                    if (input == 1)
+                        System.out.println("Computer picked Scissors" + 
+                        "\nPlayer picked Rock\n" + "Outcome: Player Wins");
+                    if (input == 2)
+                        System.out.println("Computer picked Scissors" + 
+                        "\nPlayer picked Paper\n" + "Outcome: Computer Wins");
+                }
                 
+                //Computer picked Rock
+                if (comp == 1){
+                    if (input == 0)
+                        System.out.println("Computer picked Rock" + 
+                        "\nPlayer picked Scissors\n" + "Outcome: Computer Wins");
+                    if (input == 1)
+                        System.out.println("Computer picked Rock" + 
+                        "\nPlayer picked Rock\n" + "Outcome: Tie");
+                    if (input == 2)
+                        System.out.println("Computer picked Rock" + 
+                        "\nPlayer picked Paper\n" + "Outcome: Player Wins");
+                }
+                
+                //Computer picked Paper
+                if (comp == 2){
+                    if (input == 0)
+                        System.out.println("Computer picked Paper" + 
+                        "\nPlayer picked Scissors\n" + "Outcome: Player Wins");
+                    if (input == 1)
+                        System.out.println("Computer picked Paper" + 
+                        "\nPlayer picked Rock\n" + "Outcome: Computer Wins");
+                    if (input == 2)
+                        System.out.println("Computer picked Paper" + 
+                        "\nPlayer picked Paper\n" + "Outcome: Tie");
+                }
                 
                 //Determine Whether to continue the game
-
+                System.out.print("\nWould you like to play again?\n" + 
+                                        "(Enter 'Y' or 'y' to continue or " + 
+                                        "enter 'Q' or 'q' to quit): ");
+                    
+                    while (loop){
+                        
+                        key = verifyContinuation(scanInput);
+                        
+                        if (key.equals("Q") || key.equals("q")){
+                            loop = false;
+                            proceed = false;
+                        }
+                        else if (key.equals("e")){
+                            System.out.println("Please re-enter 'Y' or 'y' to" +
+                            " continue or enter 'Q' or 'q' to quit: ");
+                        }
+                        else{
+                            sentinel = true;
+                            System.out.println();
+                            break;
+                        }
+                    }
+                    
             }
 
             
@@ -92,6 +151,33 @@ public class RockPaperScissors{
         else{
             String badInputStr = scanInput.next();
             return -1;
+        }
+        
+    }
+    
+    /* Verify continuation
+     * Parameters: Scanner
+     * return: String
+     */
+    public static String verifyContinuation (Scanner scanInput){
+        
+        String key = "e";
+        if (scanInput.hasNext()){
+            
+            key = scanInput.next();
+            
+            if (key.equals("Y") || key.equals("y") || key.equals("Q") || key.equals("q"))
+                return key;
+                
+            else{
+                String badInputStr = key;
+                return "e";
+            }
+        }
+        
+        else{
+            String badInputStr = scanInput.next();
+            return "e";
         }
         
     }

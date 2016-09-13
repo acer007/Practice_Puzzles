@@ -199,7 +199,7 @@ public class LotteryDigits{
     
     /* Verify continuation
      * Parameters: Scanner
-     * return: char
+     * return: String
      */
     public static String verifyContinuation (Scanner scanInput){
         
