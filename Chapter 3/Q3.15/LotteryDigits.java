@@ -11,17 +11,18 @@ public class LotteryDigits{
             
             //Declare Scanner
             Scanner scanInput = new Scanner(System.in);
-            int guess1, guess2, guess3;
+            int guess1 = 0;
+            int guess2 = 0;
+            int guess3 = 0;
             boolean sentinel1 = true, loop1 = true;
-            //int guess2 = 0;
-            //int guess3 = 0;
+            
             
             //Generate lottery numbers
             int lotNum1 = (int)(Math.random() * 100);
             int lotNum2 = (int)(Math.random() * 100 % 7);
             int lotNum3 = (int)(Math.random() * 100);
             System.out.println("Cheat: " + lotNum1 + " " + lotNum2 + 
-                                " " + lotNum3 + "\n");
+                                " " + lotNum3);
             
             //Prompt User Input
             System.out.print("Enter three guesses: ");
@@ -45,7 +46,26 @@ public class LotteryDigits{
             }
             
             //Check the guess
-            
+            if (guess1 == lotNum1 && guess2 == lotNum2 && guess3 == lotNum3){
+                System.out.println("Congratulations! You have made an exact match. You im $10,000");
+            }
+            else if ((guess1 == lotNum1 && guess2 == lotNum3 && guess3 == lotNum2) ||
+                     (guess1 == lotNum3 && guess2 == lotNum2 && guess3 == lotNum1) ||
+                     (guess1 == lotNum3 && guess2 == lotNum1 && guess3 == lotNum2) ||
+                     (guess1 == lotNum2 && guess2 == lotNum1 && guess3 == lotNum3) ||
+                     (guess1 == lotNum2 && guess2 == lotNum3 && guess3 == lotNum1)
+            ){
+                System.out.println("Matched all digits: You win $3000!");
+            }
+            else if ((guess1 == lotNum1 || guess2 == lotNum1 || guess3 == lotNum1) ||
+                     (guess1 == lotNum2 || guess2 == lotNum2 || guess3 == lotNum2) ||
+                     (guess1 == lotNum3 || guess2 == lotNum3 || guess3 == lotNum3)
+            ){
+                System.out.println("Matched one digit: You win $1000!");
+            }
+            else{
+                System.out.println("No matches. Try your luck next time.");
+            }
             
             
         }
