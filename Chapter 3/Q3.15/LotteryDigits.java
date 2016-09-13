@@ -11,64 +11,157 @@ public class LotteryDigits{
             
             //Declare Scanner
             Scanner scanInput = new Scanner(System.in);
-            int guess1 = 0;
-            int guess2 = 0;
-            int guess3 = 0;
-            boolean sentinel1 = true, loop1 = true;
-            
-            
-            //Generate lottery numbers
-            int lotNum1 = (int)(Math.random() * 100);
-            int lotNum2 = (int)(Math.random() * 100 % 7);
-            int lotNum3 = (int)(Math.random() * 100);
-            System.out.println("Cheat: " + lotNum1 + " " + lotNum2 + 
-                                " " + lotNum3);
-            
-            //Prompt User Input
-            System.out.print("Enter three guesses: ");
-            
-            //Verify inputs
-            while (loop1){
+            boolean contLoop = true;
+
+            while (contLoop){
                 
-                while (sentinel1){
-                    guess1 = verifyInput(scanInput);
-                    guess2 = verifyInput(scanInput);
-                    guess3 = verifyInput(scanInput);
+                //Declare Variables
+                String key = "e";
+                int guess1 = 0;
+                int guess2 = 0;
+                int guess3 = 0;
+                boolean sentinel1 = true, loop1 = true, loop2 = true;
+                
+                
+                //Generate lottery numbers
+                int lotNum1 = (int)(Math.random() * 100);
+                int lotNum2 = (int)(Math.random() * 100 % 7);
+                int lotNum3 = (int)(Math.random() * 100);
+                /*System.out.println("Cheat: " + lotNum1 + " " + lotNum2 + 
+                                    " " + lotNum3);*/
+                
+                //Prompt User Input
+                System.out.print("Enter three guesses: ");
+                
+                //Verify inputs
+                while (loop1){
                     
-                    if (guess1 != -1 && guess2 != -1 && guess3 != -1){
-                        sentinel1 = false;
-                        loop1 = false;
-                    }
-                    else{
-                        System.out.print("\nRe-enter the Lottery: ");
+                    while (sentinel1){
+                        guess1 = verifyInput(scanInput);
+                        guess2 = verifyInput(scanInput);
+                        guess3 = verifyInput(scanInput);
+                        
+                        if (guess1 != -1 && guess2 != -1 && guess3 != -1){
+                            sentinel1 = false;
+                            loop1 = false;
+                        }
+                        else{
+                            System.out.print("\nRe-enter the Lottery: ");
+                        }
                     }
                 }
-            }
+                
+                //Check the guess
+                //Exact match
+                if (guess1 == lotNum1 && guess2 == lotNum2 && guess3 == lotNum3){
+                    System.out.println("Congratulations! You have made an exact match. You im $10,000");
+                    System.out.print("Would you like to play again?\n" + 
+                                        "(Enter 'Y' or 'y' to continue " + 
+                                        "or enter 'Q' or 'q' to quit): ");
+                    
+                    while (loop2){
+                        
+                        key = verifyContinuation(scanInput);
+                        if (key.equals("Q") || key.equals("q")){
+                            loop2 = false;
+                            contLoop = false;
+                        }
+                        else if (key.equals("e")){
+                            System.out.println("Please re-enter 'Y' or 'y' to" +
+                            " continue or enter 'Q' or 'q' to quit: ");
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    
+                }
+                
+                //All match
+                else if ((guess1 == lotNum1 && guess2 == lotNum3 && guess3 == lotNum2) ||
+                         (guess1 == lotNum3 && guess2 == lotNum2 && guess3 == lotNum1) ||
+                         (guess1 == lotNum3 && guess2 == lotNum1 && guess3 == lotNum2) ||
+                         (guess1 == lotNum2 && guess2 == lotNum1 && guess3 == lotNum3) ||
+                         (guess1 == lotNum2 && guess2 == lotNum3 && guess3 == lotNum1)
+                ){
+                    System.out.println("Matched all digits: You win $3000!");
+                    System.out.print("Would you like to play again?\n" + 
+                                        "(Enter 'Y' or 'y' to continue " + 
+                                        "or enter 'Q' or 'q' to quit): ");
+                    
+                    while (loop2){
+                        
+                        key = verifyContinuation(scanInput);
+                        if (key.equals("Q") || key.equals("q")){
+                            loop2 = false;
+                            contLoop = false;
+                        }
+                        else if (key.equals("e")){
+                            System.out.println("Please re-enter 'Y' or 'y' to" +
+                            " continue or enter 'Q' or 'q' to quit: ");
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    
+                }
+                
+                //One digit match
+                else if ((guess1 == lotNum1 || guess2 == lotNum1 || guess3 == lotNum1) ||
+                         (guess1 == lotNum2 || guess2 == lotNum2 || guess3 == lotNum2) ||
+                         (guess1 == lotNum3 || guess2 == lotNum3 || guess3 == lotNum3)
+                ){
+                    System.out.println("Matched one digit: You win $1000!");
+                    System.out.print("Would you like to play again?\n" + 
+                                        "(Enter 'Y' or 'y' to continue or " + 
+                                        "enter 'Q' or 'q' to quit): ");
+                    
+                    while (loop2){
+                        
+                        key = verifyContinuation(scanInput);
+                        if (key.equals("Q") || key.equals("q")){
+                            loop2 = false;
+                            contLoop = false;
+                        }
+                        else if (key.equals("e")){
+                            System.out.println("Please re-enter 'Y' or 'y' to" +
+                            " continue or enter 'Q' or 'q' to quit: ");
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    
+                }
+                
+                //No matches
+                else{
+                    System.out.println("No matches. Try your luck next time.");
+                    System.out.print("Would you like to play again?\n" + 
+                                    "(Enter 'Y' or 'y' to continue " + 
+                                    "or enter 'Q' or 'q' to quit): ");
+                    
+                    while (loop2){
+                        
+                        key = verifyContinuation(scanInput);
+                        if (key.equals("Q") || key.equals("q")){
+                            loop2 = false;
+                            contLoop = false;
+                        }
+                        else if (key.equals("e")){
+                            System.out.println("Please re-enter 'Y' or 'y' to" +
+                            " continue or enter 'Q' or 'q' to quit: ");
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
             
-            //Check the guess
-            if (guess1 == lotNum1 && guess2 == lotNum2 && guess3 == lotNum3){
-                System.out.println("Congratulations! You have made an exact match. You im $10,000");
-            }
-            else if ((guess1 == lotNum1 && guess2 == lotNum3 && guess3 == lotNum2) ||
-                     (guess1 == lotNum3 && guess2 == lotNum2 && guess3 == lotNum1) ||
-                     (guess1 == lotNum3 && guess2 == lotNum1 && guess3 == lotNum2) ||
-                     (guess1 == lotNum2 && guess2 == lotNum1 && guess3 == lotNum3) ||
-                     (guess1 == lotNum2 && guess2 == lotNum3 && guess3 == lotNum1)
-            ){
-                System.out.println("Matched all digits: You win $3000!");
-            }
-            else if ((guess1 == lotNum1 || guess2 == lotNum1 || guess3 == lotNum1) ||
-                     (guess1 == lotNum2 || guess2 == lotNum2 || guess3 == lotNum2) ||
-                     (guess1 == lotNum3 || guess2 == lotNum3 || guess3 == lotNum3)
-            ){
-                System.out.println("Matched one digit: You win $1000!");
-            }
-            else{
-                System.out.println("No matches. Try your luck next time.");
-            }
+            }//end of contLoop
             
-            
-        }
+        }//end of try block
         
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -104,5 +197,31 @@ public class LotteryDigits{
         
     }
     
+    /* Verify continuation
+     * Parameters: Scanner
+     * return: char
+     */
+    public static String verifyContinuation (Scanner scanInput){
+        
+        String key = "e";
+        if (scanInput.hasNext()){
+            
+            key = scanInput.next();
+            
+            if (key.equals("Y") || key.equals("y") || key.equals("Q") || key.equals("q"))
+                return key;
+                
+            else{
+                String badInputStr = key;
+                return "e";
+            }
+        }
+        
+        else{
+            String badInputStr = scanInput.next();
+            return "e";
+        }
+        
+    }
     
 }
