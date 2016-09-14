@@ -13,7 +13,7 @@ public class TrianglePerimeter{
             
             //Declare Variables
             boolean proceed = true;
-            double side1 = 0, side2 = 0, side3 = 0;
+            double side1 = 0, side2 = 0, side3 = 0, perimeter = 0;
             
             //Prompt User input
             System.out.print("Please enter valid lengths of the three sides " +
@@ -32,6 +32,18 @@ public class TrianglePerimeter{
                     System.out.print("\nRe-enter the three sides of a triangle: ");
                 }
                 
+            }
+            
+            //Calculate Perimeter if the lengths are valid
+            if (((side1 + side2) > side3) && 
+                ((side1 + side3) > side2) && 
+                ((side2 + side3) > side1)
+            ){
+                perimeter = side1 + side2 + side3;
+                System.out.println("Inputs are valid\nThe perimeter of the triangle is " + perimeter);
+            }
+            else{
+                System.out.println("Inputs are invalid\nCannot calculate the triangle's perimeter");
             }
             
         }
