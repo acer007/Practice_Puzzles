@@ -75,7 +75,7 @@ public class TrianglePerimeter{
                             System.out.println();
                             break;
                         }
-                    
+                        
                 }
                 
             }
