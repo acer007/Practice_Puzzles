@@ -10,7 +10,7 @@ public class DecToHex{
             Scanner scanInput = new Scanner(System.in);
             
             //Prompt input
-            System.out.println("Enter a Decimal Value (0 to 15): ");
+            System.out.print("Enter a Positive Decimal Value: ");
             
             //Verify input
             int dec = 0;
@@ -20,9 +20,9 @@ public class DecToHex{
                 if (scanInput.hasNextInt()){
                     dec = scanInput.nextInt();
                     
-                    if (dec < 0 || dec > 15){
+                    if (dec < 0){
                         int badInputInt = dec;
-                        System.out.print("Re-enter and integer between 0 and 15: ");
+                        System.out.print("Re-enter a positive integer: ");
                     }
                     else{
                         break;
@@ -31,16 +31,16 @@ public class DecToHex{
                 
                 else{
                     String badInputStr = scanInput.next();
-                    System.out.print("Re-enter a valid integer between 0 and 15: ");
+                    System.out.print("Re-enter a positive integer: ");
                 }
                 
             }
             
             //Convert Decimal to Hex
-            
+            String hex = Integer.toHexString(dec);
             
             //Display
-            
+            System.out.println("The decimal " + dec + " in hexadecimal is " + hex);
             
         }
         
