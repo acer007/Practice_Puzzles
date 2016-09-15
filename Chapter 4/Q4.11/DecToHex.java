@@ -37,13 +37,15 @@ public class DecToHex{
             }
             
             //Convert Decimal to Hex
-            //String hex = Integer.toHexString(dec);
-            
-            String hex2 = convertToHex(dec);
+            String hex = Integer.toHexString(dec);
+            String hex2 = palindrome(convertToHex(dec));
             
             //Display
-            //System.out.println("The decimal " + dec + " in hexadecimal is " + hex);
-            System.out.println("Version 2: " + hex2);
+            System.out.println("Using Integer.toHexString(): The decimal " + 
+                        dec + " in hexadecimal is " + hex);
+                        
+            System.out.println("Using constructed methods within program: " + 
+                        "The decimal " + dec + " in hexadecimal is " + hex2);
         }
         
         catch (Exception e){
@@ -105,8 +107,8 @@ public class DecToHex{
     public static String palindrome (String sequence){
         String copy = "";
         
-        for (int k = sequence.length(); k >=0; k--){
-            copy = copy + sequence.charAt(k);
+        for (int k = sequence.length(); k >=1; k--){
+            copy = copy + sequence.charAt(k-1);
         }
         
         return copy;
