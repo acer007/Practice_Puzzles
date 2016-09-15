@@ -3,7 +3,7 @@ public class HelloWorld{
     public static void main(String args[]){
         
         try{
-            System.out.println("Hello There!");
+            
         }
         
         catch (Exception e){
@@ -13,3 +13,5 @@ public class HelloWorld{
     }
     
 }
+
+System.out.println("Hello There!");
