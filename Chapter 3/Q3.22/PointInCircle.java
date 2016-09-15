@@ -15,7 +15,7 @@ public class PointInCircle{
             Scanner scanInput = new Scanner(System.in);
             
             //Declare variables
-            double x = 0, y= 0, distance = 0;
+            double x = 0, y = 0, distance = 0;
             boolean proceed = true, loop = true, verify = true;
             String key = "";
             
@@ -25,19 +25,22 @@ public class PointInCircle{
                 System.out.print("Enter a point with two coordinates (x, y): ");
                 
                 //Verify inputs
-                while (scanInput.hasNext()){
-                        
+                while (proceed){
+                    
                     if (scanInput.hasNextDouble()){
                         x = scanInput.nextDouble();
-                        break;
+                        y = scanInput.nextDouble();
+                        proceed = false;
                     }
+                    
                     else{
                         String badInputStr = scanInput.next();
                         System.out.print("\nInvalid input. Please enter integers: ");
                     }
+                    
                 }
                     
-                while (scanInput.hasNext()){
+                /*while (scanInput.hasNext()){
                         
                     if (scanInput.hasNextDouble()){
                         y = scanInput.nextDouble();
@@ -47,9 +50,7 @@ public class PointInCircle{
                         String badInputStr = scanInput.next();
                         System.out.print("\nInvalid input. Please enter integers: ");
                     }
-                }
-                    
-                
+                }*/
                 
                 //Calculate the distance
                 distance = distance(x, y);
@@ -74,6 +75,7 @@ public class PointInCircle{
                         
                         if (key.equals("Q") || key.equals("q")){
                             verify = false;
+                            proceed = true;
                             loop = false;
                         }
                         else if (key.equals("e")){
@@ -81,7 +83,6 @@ public class PointInCircle{
                             " continue or enter 'Q' or 'q' to quit: ");
                         }
                         else{
-                            //proceed = true;
                             System.out.println();
                             break;
                         }
