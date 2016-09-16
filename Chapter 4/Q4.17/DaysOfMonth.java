@@ -44,7 +44,9 @@ public class DaysOfMonth{
             // Enter the month
             System.out.print("Enter the month (Ex. Jan, Feb, etc.): ");
             String month = "";
-            String[] monthArray = new String[] {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+            String[] monthArray = new String[] {"Jan", "Feb", "Mar", "Apr", 
+                                                "May", "Jun", "Jul", "Aug", 
+                                                "Sep", "Oct", "Nov", "Dec"};
             
             // Verify Input
             while (scanInput.hasNext()){
@@ -78,6 +80,39 @@ public class DaysOfMonth{
                 }
                 
             }
+            
+            // Determine Number of Days
+            
+            int days = 0;
+            
+            //Leap year
+            if (month.equals("Feb")){
+                
+                if (((year % 4 == 0) && (year % 100 !=0)) || (year % 400 == 0))
+                    days = 29;
+                else
+                    days = 28;
+            }
+            
+            // 30-days
+            if (month.equals("Apr") || 
+                month.equals("Jun") || 
+                month.equals("Sep") || 
+                month.equals("Nov")){
+                days = 30;
+            }
+            
+            // 31-days
+            if (month.equals("Jan") || month.equals("Mar") || 
+                month.equals("May") || month.equals("Jul") ||
+                month.equals("Aug") || month.equals("Oct") ||
+                month.equals("Dec")    
+            ){
+                days = 31;
+            }
+            
+            // Display
+            System.out.println("Days: " + days);
             
         }
         
