@@ -19,22 +19,41 @@ public class SSNFormat{
                 
                 ssn = scanInput.next();
                 
-                if (ssn.length == 11){
+                if (ssn.length() == 11){
                     
                     for (int k = 0; k < 3; k++){
                         
-                        if (!(Character.isDigit(ssn[k]))){
+                        if (!(Character.isDigit(ssn.charAt(k)))){
                             String badInput = ssn;
                             System.out.print("Re-enter SSN as XXX-XX-XXXX: ");
                         }
-                        else{
-                            
-                            for (int j = ){
-                                
-                            }
-                            
-                        }
+                      
                     }
+                    
+                    if ((ssn.charAt(3) != '-') && (ssn.charAt(6) != '-')){
+                        String badInput = ssn;
+                        System.out.print("Re-enter SSN as XXX-XX-XXXX: ");
+                    }
+                    
+                    for (int k = 4; k < 6; k++){
+                        
+                        if (!(Character.isDigit(ssn.charAt(k)))){
+                            String badInput = ssn;
+                            System.out.print("Re-enter SSN as XXX-XX-XXXX: ");
+                        }
+                      
+                    }
+                    
+                    for (int k = 7; k < 11; k++){
+                        
+                        if (!(Character.isDigit(ssn.charAt(k)))){
+                            String badInput = ssn;
+                            System.out.print("Re-enter SSN as XXX-XX-XXXX: ");
+                        }
+                      
+                    }
+                    
+                    proceed = false;
                     
                 }
             
@@ -44,7 +63,6 @@ public class SSNFormat{
                 }
                 
             }
-            
             
         }
         
