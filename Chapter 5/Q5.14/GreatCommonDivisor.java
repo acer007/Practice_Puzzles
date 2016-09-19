@@ -11,6 +11,7 @@ public class GreatCommonDivisor{
             
             System.out.print("Enter two integers in order to find the GCD between them: ");
             
+            //Verify entry for two numbers
             while (scanInput.hasNext()){
                 
                 if (scanInput.hasNextInt()){
@@ -42,8 +43,40 @@ public class GreatCommonDivisor{
                 
             }
             
+            //System.out.println("n1 = " + n1 + "\nn2 = " + n2);
             
-            System.out.println("n1 = " + n1 + "\nn2 = " + n2);
+            //Define variables accordingly
+            int bigN = 0;
+            int smallN = 0;
+            if (n1 < n2){
+                bigN = n2;
+                smallN = n1;
+            }
+            else {
+                bigN = n1;
+                smallN = n2;
+            }
+            
+            //Compute GCD
+            int gcd = 0;
+            
+            for (int k = 1; k < bigN; k++){
+                
+                if ((bigN % k == 0) && (smallN % k == 0) && (k > gcd)){
+                    gcd = k;
+                }
+                
+            }
+            
+            if (gcd == 0){
+                System.out.println("There is no greater common divisor " + 
+                                    "between " + n1 + " and " + n2);
+            }
+            else{
+                System.out.println("The greatest common divisor between " + 
+                n1 + " and " + n2 + " is " + gcd);
+            }
+            
             
         }
         
