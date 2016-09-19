@@ -41,7 +41,25 @@ public class NumberPyramid{
             }
             
             //Print out pyramid
+            String key = "";
             
+            for (int k = 1; k <= lines; k++){
+                
+                //must nest another for loop in order to determine centeredness
+                for (int j = 0; j < (lines - k); j++){
+                    System.out.printf("   ");
+                }
+                
+                if (k == 1){
+                    key = " " + k + " ";
+                    System.out.println(key);
+                }
+                else{
+                    key = " " + k + " " + key + " " + k + " ";
+                    System.out.println(key);
+                }
+                
+            }
             
         }
         
