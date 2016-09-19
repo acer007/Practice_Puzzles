@@ -90,7 +90,7 @@ public class FourStairs{
                     System.out.printf("  ");
                 }
                 
-                for (int l = 1; l < (lines - j); l++){
+                for (int l = 1; l <= (lines - j); l++){
                     
                     keyD += l + " ";
                 }
