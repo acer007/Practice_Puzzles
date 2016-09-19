@@ -55,6 +55,28 @@ public class FourStairs{
             
             //Pattern B
             System.out.println("Pattern B");
+            
+            for (int  i = lines; i > 0; i--){
+                
+                for (int k = 1; k < i; k++){
+                    keyB += k + " ";
+                }
+                System.out.println(keyB);
+                keyB = "";
+            }
+            
+            /*for (int j = lines; j > 0; j--){
+                
+                for (int k = (lines - j); k > 0; k--){
+                    
+                    keyB = (keyB) + " " + k;
+                    
+                }
+                
+                System.out.println(keyB);
+                keyB = "";
+                
+            }*/
 
             
             
