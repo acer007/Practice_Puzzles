@@ -46,7 +46,7 @@ public class NumberPyramid{
             for (int k = 1; k <= lines; k++){
                 
                 //must nest another for loop in order to determine centeredness
-                for (int j = 0; j < (lines - k); j++){
+                for (int j = 0; j < (lines - j); j++){
                     System.out.printf("   ");
                 }
                 

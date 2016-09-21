@@ -60,7 +60,7 @@ public class GreatCommonDivisor{
             //Compute GCD
             int gcd = 0;
             
-            for (int k = 1; k < bigN; k++){
+            for (int k = 2; k < bigN; k++){
                 
                 if ((bigN % k == 0) && (smallN % k == 0) && (k > gcd)){
                     gcd = k;

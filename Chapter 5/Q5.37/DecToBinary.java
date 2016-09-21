@@ -51,6 +51,7 @@ public class DecToBinary{
                 
                 //output
                 binaryStr = palindrome(binaryStr);
+                binaryStr = addSpace(binaryStr);
                 System.out.println("Binary Number: " + binaryStr);
                 
             
@@ -73,6 +74,29 @@ public class DecToBinary{
         
         for (int k = sequence.length(); k >= 1; k--){
             copy += sequence.charAt(k-1);
+        }
+        
+        
+        return copy;
+    }
+    
+    /* addSpace
+     * Paameters: String
+     * return: String
+     */
+    public static String addSpace(String sequence){
+        
+        String copy = "";
+        for (int k = 0; k < sequence.length(); k++){
+            
+            if ((k % 4) == 0){
+                copy += " ";
+                copy += sequence.charAt(k);
+            }
+            else{
+                copy += sequence.charAt(k);
+            }
+            
         }
         
         return copy;
