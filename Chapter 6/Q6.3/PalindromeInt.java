@@ -36,8 +36,15 @@ public class PalindromeInt{
                 
             }
             
-            int reversedNum = reverse(num);
-            System.out.println(reversedNum);
+            //int reversedNum = reverse(num);
+            //System.out.println(reversedNum);
+            boolean answer = isPalindrome(num);
+            if (answer == true){
+                System.out.println("The integer is a palindrome");
+            }
+            else{
+                System.out.println("The integer is not a palindrome");
+            }
             
         }
         
@@ -62,6 +69,9 @@ public class PalindromeInt{
     }
     
     //Return true if number is a palindrome
+    public static boolean isPalindrome(int number){
+        return (number == reverse(number));
+    }
     
     
 }
